@@ -28,7 +28,7 @@ ElectricAppliance.prototype.makeNoise = function (noise){
 	console.log(`${this.name} goes ${noise}`)
 }
 
-// Кухонные приборы, прототипом которых является родительская функция ElectricAppliance
+// Функция-конструктор "Кухонные приборы", прототипом которых является родительская функция ElectricAppliance
 function KitchenAppliance(name, amp, watt, weight, inSocket = false){
 	this.name = name,
 	this.weight = weight,
@@ -37,6 +37,7 @@ function KitchenAppliance(name, amp, watt, weight, inSocket = false){
     this.inSocket = inSocket,
 	console.log(`${name} is a kitchen appliance that weights ${weight} kilos`)
 }
+KitchenAppliance.prototype = new ElectricAppliance();
 KitchenAppliance.prototype.isOld = function(yearOfManufacturing){
 	if(yearOfManufacturing > 2010){
 		console.log(`${this.name} is a relatively new appliance that was produced in ${yearOfManufacturing}`)
@@ -45,7 +46,8 @@ KitchenAppliance.prototype.isOld = function(yearOfManufacturing){
 		console.log(`${this.name} is a relatively old appliance that was produced in ${yearOfManufacturing}, please consider replacing itt`)
 	}
 }
-KitchenAppliance.prototype = new ElectricAppliance()
+
+
 
 // Инструменты, прототипом которых является родительская функция ElectricAppliance
 function ToolAppliances (name, amp, watt, countryOfOrigin, inSocket = false){
@@ -56,10 +58,10 @@ function ToolAppliances (name, amp, watt, countryOfOrigin, inSocket = false){
     this.inSocket = inSocket,
     console.log(`This ${name} was manufactured in ${countryOfOrigin}`)
 }
+ToolAppliances.prototype = new ElectricAppliance();
 ToolAppliances.prototype.consumedPower = function(){
 	console.log(`The power of ${this.name} is ${this.watt} watts`)
 }
-
 
 
 const dryer = new ElectricAppliance('Hair Dryer', 1.5, 75);
@@ -71,4 +73,7 @@ dryer.switchPower()
 dryer.switchPower()
 dryer.makeNoise("BRRRRRR")
 oven.isOld(2007)
-oven.makeNoise('UuuuuuUUUUuuu')
+drill.consumedPower()
+oven.makeNoise('UUuUUUuUUu')
+drill.makeNoise('DrrrDrrddRrrrr')
+
